@@ -27,7 +27,7 @@ func (fn appHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 // middlewares
 func printer(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if v, ok := context.GetOk(r, "text"); ok {
+		if v, ok := context.GetOk(r, keyText); ok {
 			fmt.Println(v)
 		}
 		next.ServeHTTP(w, r)
