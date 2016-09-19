@@ -13,9 +13,9 @@ func compose(ms []Ware, h http.Handler) http.Handler {
 	}
 }
 
-func CreateEndpoints(r *mux.Router, es []Endpoint) {
+func CreateEndpoints(r *mux.Router, es []Endpoint, prefix string) {
 	for _, e := range es {
-		r.Handle(e.Path, compose(append(e.Middlewares, e.Blockwares...), e.Handler)).Methods(e.Methods...)
+		r.Handle(prefix+e.Path, compose(append(e.Middlewares, e.Blockwares...), e.Handler)).Methods(e.Methods...)
 	}
 }
 

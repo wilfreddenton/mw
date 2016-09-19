@@ -76,6 +76,6 @@ func Test(t *testing.T) {
 	}
 	es := []Endpoint{e1, e2}
 	r := mux.NewRouter().StrictSlash(true)
-	CreateEndpoints(r, es)
+	CreateEndpoints(r, es, "/api/v1")
 	http.ListenAndServe(":9999", r)
 }
