@@ -15,8 +15,7 @@ func compose(ms []Ware, h http.Handler) http.Handler {
 
 func CreateEndpoints(r *mux.Router, es []Endpoint) {
 	for _, e := range es {
-		a := append(e.Middlewares, e.Blockwares...)
-		r.Handle(e.Path, compose(a, e.Handler)).Methods(e.Methods...)
+		r.Handle(e.Path, compose(append(e.Middlewares, e.Blockwares...), e.Handler)).Methods(e.Methods...)
 	}
 }
 
