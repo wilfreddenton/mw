@@ -62,13 +62,15 @@ func endpoint2Handler(w http.ResponseWriter, r *http.Request) *Error {
 func Test(t *testing.T) {
 	e1 := Endpoint{
 		"/e1",
-		[]Ware{writer1, printer},
+		[]Ware{writer1},
+		[]Ware{printer},
 		endpoint1Handler,
 		[]string{"GET"},
 	}
 	e2 := Endpoint{
 		"/e2",
-		[]Ware{writer2, printer},
+		[]Ware{writer2},
+		[]Ware{printer},
 		endpoint2Handler,
 		[]string{"GET"},
 	}

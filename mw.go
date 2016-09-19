@@ -15,7 +15,8 @@ func compose(ms []Ware, h http.Handler) http.Handler {
 
 func CreateEndpoints(r *mux.Router, es []Endpoint) {
 	for _, e := range es {
-		r.Handle(e.Path, compose(e.Middlewares, e.Handler)).Methods(e.Methods...)
+		a := append(e.Middlewares, e.Blockwares...)
+		r.Handle(e.Path, compose(a, e.Handler)).Methods(e.Methods...)
 	}
 }
 
@@ -24,6 +25,7 @@ type Ware func(http.Handler) http.Handler
 type Endpoint struct {
 	Path        string
 	Middlewares []Ware
+	Blockwares  []Ware
 	Handler     appHandler
 	Methods     []string
 }
