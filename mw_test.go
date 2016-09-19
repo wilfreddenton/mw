@@ -8,6 +8,8 @@ import (
 	"testing"
 )
 
+const keyText = "text"
+
 type Error struct {
 	Message string
 	Code    int
@@ -34,14 +36,14 @@ func printer(next http.Handler) http.Handler {
 
 func writer1(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		context.Set(r, "text", "Hello World!")
+		context.Set(r, keyText, "Hello World!")
 		next.ServeHTTP(w, r)
 	})
 }
 
 func writer2(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		context.Set(r, "text", "h e l l o w o r l d")
+		context.Set(r, keyText, "h e l l o w o r l d")
 		next.ServeHTTP(w, r)
 	})
 }
