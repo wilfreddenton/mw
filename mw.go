@@ -25,6 +25,6 @@ type Endpoint struct {
 	Path        string
 	Middlewares []Ware
 	Blockwares  []Ware
-	Handler     appHandler
+	Handler     http.Handler
 	Methods     []string
 }

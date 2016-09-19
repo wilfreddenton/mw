@@ -64,14 +64,14 @@ func Test(t *testing.T) {
 		"/e1",
 		[]Ware{writer1},
 		[]Ware{printer},
-		endpoint1Handler,
+		appHandler(endpoint1Handler),
 		[]string{"GET"},
 	}
 	e2 := Endpoint{
 		"/e2",
 		[]Ware{writer2},
 		[]Ware{printer},
-		endpoint2Handler,
+		appHandler(endpoint2Handler),
 		[]string{"GET"},
 	}
 	es := []Endpoint{e1, e2}
